@@ -52,9 +52,52 @@ The SMB protocol operates on the application layer of the TCP/IP model, but reli
  - ``[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\DOS Devices]`` - Maps network drives for all users by assigning a drive letter to a UNC path.
 
  - ``Administrative shares (C$, ADMIN$, IPC$)`` - Hidden default shares for administrative access, automatically created by Windows.
+## SMB Versions
+
+### SMB 1.x 
+- Designed in early 1980s by IBM; extended by Microsoft around 1990.
+- Sends a lot of messages, causing performance issues on high-latency networks.
+- Uses weak authentication (LAN Manager passwords, flawed DES).
+- No native encryption; limited signing capabilities.
+
+### SMB 2.x (SMB 2.0 and 2.1)
+- Introduced in 2006 with Windows Vista and Server 2008.
+- Reduced messages sent with fewer commands and pipelining.
+- Improved security with better signing (HMAC SHA-256).
+- Improved performance and scalability.
+
+### SMB 3.x (3.0, 3.0.2, 3.1.1 and later)
+- Introduced with Windows 8 / Server 2012.
+- Major features for virtualization and datacenters
+- Native **encryption** support:
+  - SMB 3.0: AES-128 CCM encryption.
+  - SMB 3.1.1 (Windows 10 / Server 2016): AES-128 GCM encryption and pre-authentication integrity (SHA-512).
+- Mandatory secure negotiation on SMB 3.1.1.
+- SMB 1 disabled by default starting Windows Server 2012 R2.
+
+You can read more [here](https://en.wikipedia.org/wiki/Server_Message_Block#History)
+
+## Security
+Some important security settings should be enforced, such as:
+
+- **Disable SMB 1.0** - Older versions of SMB are less secure. Disable more if it does not harm compatibility.
+- **Strong Authentication** - Use Kerberos when possible.
+- **Principle of Least Privilege** - Grant users only the necessary permissions.
+- **Siging and Encrpytion** - Use AES-128-GCM and enable SMB Signing on both clients and servers.
+- **Auditing** - Obviously
+
 
 ## References & Further Reading
 - https://en.wikipedia.org/wiki/Server_Message_Block
 - https://www.techtarget.com/searchnetworking/definition/Server-Message-Block-Protocol
 - https://learn.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview
 - https://learn.microsoft.com/en-us/previous-versions/windows/desktop/mscs/file-share
+
+## Practice
+DPRK(3 vulns), Mushroom Kingdom(3 vulns), PPTH(3 vulns), and Among the Reindeer(2 vulns) are some images with SMB.
+https://images.cypat.guide#gid=0
+
+___
+## Vulnerability Research
+- https://stigviewer.com/stigs/microsoft_windows_server_2022
+- https://workbench.cisecurity.org/benchmarks/21344

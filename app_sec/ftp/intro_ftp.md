@@ -35,12 +35,15 @@ Examples:
 
 The way the data channel opens determines the mode. In Active mode, the server connects back to the client, but this is often blocked by firewalls. In Passive mode, the client starts the connection to the server. This method is more friendly to firewalls and is the modern standard.
 
+## FTPS vs SFTP
+It's important to note that while both offer secure transfers, FTPS is FTP secured by SSL/TLS. SFTP, however, is a different protocol built on top of SSH, using a single connection for both commands and data.
+
 ## Important Files and Locations
 Note that this is when the FTP Server role is installed in IIS
-* **Default FTP Root Directory:** `C:\inetpub\ftproot`
-* **IIS Configuration File:** `C:\Windows\System32\inetsrv\config\applicationHost.config`
-* **FTP Log Files:** `C:\inetpub\logs\LogFiles\FTPSVC[SiteID]`
-* **Built-in Command-Line Client:** `C:\Windows\System32\ftp.exe`
+* `C:\inetpub\ftproot` - Default location for hosted FTP content. Can be changed per site in IIS Manager.
+* `C:\Windows\System32\inetsrv\config\applicationHost.config` - Stores all IIS site and FTP configuration settings.
+* `C:\inetpub\logs\LogFiles\FTPSVC[SiteID]` - Contains FTP connection and transfer logs; [SiteID] matches the site’s numeric ID in IIS.
+* `C:\Windows\System32\ftp.exe` - Basic FTP client for command-line transfers and testing.
 
 ## Microsoft FTP
 Windows Server comes with a FTP server as part of IIS. It is not installed by default but can be turned on through "Turn Windows features on or off" or "Add Roles and Features" in Server Manager. 
@@ -49,7 +52,12 @@ Windows Server comes with a FTP server as part of IIS. It is not installed by de
 
 * **FileZilla Server:** A widely used free, open-source server that is simple to set up. It supports both FTP and FTPS and has an easy graphical interface for managing users and groups.
 * **Wing FTP Server:** A flexible server that supports SFTP, FTPS, and HTTPS. It is known for its web-based administration interface, allowing for remote management from any browser.
-* **WinSCP**: Primarily a file transfer client, WinSCP also includes scripting and automation features that can function like a lightweight server solution. It supports SFTP, SCP, and FTP, and is widely used for secure file transfers in scripted or automated workflows.
+
+## Common FTP Clients
+*   **FileZilla Client:** A free, open-source, cross-platform client with a graphical user interface, supporting FTP, FTPS, and SFTP.
+*   **WinSCP:** (Windows only) A free graphical SFTP, SCP, S3, FTP, and WebDAV client. Known for its strong integration with Windows and scripting capabilities.
+
+
 ## References & Further Reading
 *   https://learn.microsoft.com/en-us/iis/install/installing-publishing-technologies/installing-and-configuring-ftp-7-on-iis-7
 *   https://wiki.filezilla-project.org/Main_Page
@@ -58,3 +66,16 @@ Windows Server comes with a FTP server as part of IIS. It is not installed by de
 *   https://winscp.net/eng/docs/start
 *   https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ftp
 *   https://en.wikipedia.org/wiki/File_Transfer_Protocol
+
+## Practice
+
+Apeture Science(~5 vulns) and My Little Pony (2 vulns) are images with FTP.
+https://images.cypat.guide#gid=0
+
+## Vulenrability Research
+*   https://learn.microsoft.com/en-us/iis/configuration/system.ftpserver/security/
+*   https://wiki.filezilla-project.org/Securing_your_Windows_Service_installation
+*   https://filezillapro.com/docs/server/advanced-options/setting-up-connection-security/
+*	https://support.cerberusftp.com/hc/en-us/articles/360000499020-Securing-Cerberus-FTP-Server-Best-Practices-for-Enhanced-Security
+*   https://www.wftpserver.com/help/ftpserver/index.html?security.htm
+*   https://winscp.net/eng/docs/security

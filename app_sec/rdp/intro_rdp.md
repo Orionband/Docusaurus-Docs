@@ -40,7 +40,21 @@ Remote Desktop Protocol (RDP) connects to another computer over a network, usual
 5.  Screen updates are sent to the client, and user inputs are relayed to the server.
 6.  The remote desktop session is established, streaming the remote interface to the client while sending input back to the host.
 
+## Security
 
+The security of Remote Desktop Protocol (RDP) connections primarily relies on Windows authentication mechanisms. The two main protocols used for authenticating users during an RDP session are:
+
+- **NTLM (NT LAN Manager) - **  An older challenge-response authentication protocol. While still supported, NTLM is significantly less secure.
+
+- **Kerberos** - Kerberos provides stronger security through mutual authentication (both client and server verify each other's identity) and protection against replay attacks. This is always prefered method.
+
+Other important security measures include:
+
+- **Network Level Authentication (NLA)** - Requires the client to authenticate using Windows credentials (via Kerberos or NTLM) *before* the RDP session is fully established. This reduces the server’s attack surface and mitigates various attacks, such as credential brute-force and resource exhaustion.
+
+- **Encryption** - RDP supports encryption through TLS (Transport Layer Security). It is recommended to enforce **TLS 1.2 or later** to avoid vulnerabilities in older versions and to protect session data in transit.
+
+- **Auditing and Monitoring**  - This goes with all the other critical services in the Application Security section.
 
 ## Important files and locations
  - ``HKCU\Software\Microsoft\Terminal Server Client\Default`` - Stores connection history, credentials, and display settings.
@@ -55,9 +69,19 @@ Remote Desktop Protocol (RDP) connects to another computer over a network, usual
 
 
 
-
 ___
 ### References & Further Reading
 - https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/023f1e69-cfe8-4ee6-9ee0-7e759fb4e4ee
 - https://en.wikipedia.org/wiki/Remote_Desktop_Protocol
 - https://learn.microsoft.com/en-us/troubleshoot/windows-server/remote/understanding-remote-desktop-protocol
+
+## Practice
+
+DPRK(2 vulns), Tokyo 3(2 vulns), Baldi's Basics(2 vulns), Sunrise(3 vulns), Beyond Journey's End(2 vulns), Alphabet Soup(2 vulns), PPTH(3 vulns) are some images with RDP.
+https://images.cypat.guide#gid=0
+
+___
+## Vulnerability Research
+
+- https://stigviewer.com/stigs/microsoft_windows_11
+- https://workbench.cisecurity.org/benchmarks/21318
