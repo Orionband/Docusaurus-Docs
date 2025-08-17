@@ -182,28 +182,6 @@ Don't do it. It will make you create security questions.
 ```powershell
 net user username password
 ```
-## Quiz
-<details>
-  <summary><strong>What application shows whether or not a user has a password by showing "Password Protected"?</strong></summary>
-  <p>
-    <strong>Control Panel</strong>
-  </p>
-</details>
-<details>
-  <summary><strong>What application allows you to view all users in the Administrator group?</strong></summary>
-  <p>
-    <strong>lusrmgr.msc</strong>  
-
-   Note that it can also show all users in any groups
-  </p>
-</details>
-<details>
-  <summary><strong>What accounts should be disabled?</strong></summary>
-  <p>
-    <strong>Guest and Administrator accounts</strong>  
-  </p>
-</details>
-
 
 ## Practice
 Most basic images contain the content covered in this article. Other images will go beyond this, especially ones with Active Directory:  

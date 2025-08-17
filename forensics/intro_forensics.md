@@ -16,7 +16,10 @@ This article is for easy FQs as well as advice for practicing.
 
 ## What are forensics questions?
 
-Forensics Questions are questions that ask about the current system or general information. These can ask you anything from recent CVEs to finding backdoors on the current machine or reversing a binary. These can also include file attachments include, but not limited to: network captures, images, and zip files. They are usually located on the Desktop
+Forensics Questions are questions that ask about the current system or general information that has some relationship to the current system. These can ask you anything from CVEs to finding backdoors on the current machine or reversing a binary. These can also include file attachments include, but not limited to: network captures, images, and zip files. They are usually located on the Desktop.
+
+## Why do we do forensics questions?
+The skills developed through forensics are fundamental to the field of Incident Response (IR), a vital part in cybersecurity. Professionals use these techniques to investigate security breaches, understand an attacker's methods, and gather digital evidence.
 
 ## What can I use for extra practice?
 

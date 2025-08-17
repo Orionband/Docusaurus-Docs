@@ -54,27 +54,7 @@ Uninstall from Control Panel:
 ### [WinDirStat](https://windirstat.net/) - Prohibited files
 WinDirStat is a disk usage statistics viewer and cleanup assistant for Windows. It can assist in finding whether Users have prohibited files in their Common directories, as the percentage indicates empty directories, and it is easy to sift through common directories. It can also be used to find prohibited files in unusual locations, such as in ``C:\`` or in ``%HOMEPATH%``.
 
----
 
-## Quiz
-<details>
-  <summary><strong>What are some examples of prohibited files?</strong></summary>
-  <p>
-    <strong>mp3 files, plain text password files, and games.</strong>  
-  </p>
-</details>
-<details>
-  <summary><strong>What application allows for searching of all mp3 files quickly?</strong></summary>
-  <p>
-    <strong>Voidtools(Everything)</strong>
-  </p>
-</details>
-<details>
-  <summary><strong>How does WinDirStat help in finding prohibited files</strong></summary>
-  <p>
-    <strong>It can assist in finding whether Users have prohibited files based upon the percentage of space and the ability to spot unusual files and folders.</strong>  
-  </p>
-</details>
 
 
 

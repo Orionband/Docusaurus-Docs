@@ -16,13 +16,12 @@ Group Policy is a feature in Microsoft Windows that allows administrators to man
 
 
 ## Concepts
-## Concepts
-* Where Group Policy settings are stored:
-    * `HKEY_LOCAL_MACHINE\Software\Policies` and `HKEY_CURRENT_USER\Software\Policies`
-    * `HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies` and `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies`
-    * `%SystemRoot%\System32\GroupPolicy\`
-* Group Policies can be applied to specific groups within Active Directory (a Windows Server feature). For example, users in a ``Students`` group can have different Group Policy Objects (GPOs) applied compared to users in a ``Teachers`` group.
-* Group Policy settings are processed in the following order: Local, Site, Domain, and Organizational Unit (OU). Later policies override earlier ones, with OU policies having the highest precedence.
+*   **Where Group Policy settings are stored:**
+     *   **Registry Keys:** The actual policy settings are written to these protected registry locations, overriding standard user or application settings.
+         *   `HKEY_LOCAL_MACHINE\Software\Policies` (for computer settings)
+         *   `HKEY_CURRENT_USER\Software\Policies` (for user settings)
+         *   *(And the corresponding ...\Microsoft\Windows\CurrentVersion\Policies locations)*
+     *   **File System:** The `%SystemRoot%\System32\GroupPolicy\` directory stores the files that make up a GPO, including administrative templates and script files.
 
 
 ## Group Policy vs Registry
@@ -37,6 +36,20 @@ They are both used to configure settings, but Registry is basically an unc. Here
 *  ``gpmc.msc`` - For groups.
     * For groups. You can edit them by selecting them on the sidebar.
 
+
+## Local Security Policy
+`secpol.msc` is a specific section of the local group policy(`Computer Configuration > Windows Settings > Security Settings`). Any change you make in `secpol.msc` is actually being made within the Local Group Policy (`gpedit.msc`) and can be viewed there.
+
+
+
+**Main Settings Configured in ``secpol.msc``:**
+
+*   **Account Policies** - This is where you configure password requirements (length, complexity, history) and account lockout policies (e.g., lock an account after 5 bad password attempts).
+*   **Audit Policy** - Determines which security-related events are logged in the Windows Security Event Log. For example, you can audit successful or failed logon attempts.
+*   **User Rights Assignment** - Controls the specific rights and privileges that users and groups have on the local machine, such as "Shut down the system" or "Back up files and directories."
+*   **Security Options** - A large collection of miscellaneous security settings, such as "Interactive logon: Do not display last user name" or policies related to User Account Control (UAC).
+
+
 ## Tools for automation and compliance
 *  [LGPO](https://www.microsoft.com/en-us/download/details.aspx?id=55319) - Allows you to import and export GPOs
 *  [Hardening Kitty](https://github.com/scipag/HardeningKitty) - Similar to lgpo, and has diverse modes which can allow you to see the most critical policies that are set incorrectly. It also contains some premade baselines.
@@ -46,34 +59,8 @@ They are both used to configure settings, but Registry is basically an unc. Here
 *  [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks) - Baselines made by the Center for Internet Security. It provides two levels of baselining and is widely used.
 *  [DoD Stigs](https://stigviewer.com/stigs) -  Security baselines created by the Department of Defense. These guides are used to harden military networks and systems.
 
-## Quiz
-<details>
-  <summary><strong>Who developed STIGs and what are they used for?</strong></summary>
-  <p>
-    <strong>The US Department of Defense. They are used to harden government networks and systems.</strong>
-  </p>
-</details>
-<details>
-  <summary><strong>What is the difference between gpedit.msc and gpmc.msc?</strong></summary>
-  <p>
-    <strong>``gpedit.msc`` is used to configure local(on the computer) policies, while ``gpmc.msc`` is used to configure policies for networks and groups.</strong>
-  </p>
-</details>
-<details>
-  <summary><strong>Where are group policies stored?</strong></summary>
-  <p><strong>Group policies are stored in the following locations:</strong></p>
-<ul>
-  <li>HKEY_LOCAL_MACHINE\Software\Policies and HKEY_CURRENT_USER\Software\Policies</li>
-  <li>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies and HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</li>
-  <li>%SystemRoot%\System32\GroupPolicy\ </li>
-</ul>
-
-</details>
-
-
-
 ## Practice
-ALL images except for the persistence image contain Group Policy points:  
+ALL images except for images like the persistence image contain Group Policy points:  
 images.cypat.guide
 
 
@@ -83,7 +70,8 @@ ___
 * https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview
 * https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-management-console
 * https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn265982(v=ws.11)
-*  https://www.microsoft.com/en-us/download/details.aspx?id=55319
+* https://www.microsoft.com/en-us/download/details.aspx?id=55319
+* https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/how-to-configure-security-policy-settings
 *  https://github.com/scipag/HardeningKitty
 *  https://public.cyber.mil/stigs/scap/
 *  https://www.cisecurity.org/cis-benchmarks
